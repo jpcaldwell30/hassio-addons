@@ -60,8 +60,8 @@ RUN \
         gpg \
         git \
         libffi-dev \
-        libxml2-dev \
-        libxslt1-dev \
+#       libxml2-dev \
+#        libxslt1-dev \
         zlib1g-dev \
         build-essential \
         gcc \
