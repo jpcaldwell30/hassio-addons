@@ -21,9 +21,6 @@ RUN \
     \
     && apt-get update \
 
-# Move access.log to stdout and error.log to stderr
-RUN mkdir -p /var/log/nginx && ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
-
 # Copy root filesystem
 COPY rootfs /
 
