@@ -13,13 +13,13 @@ RUN \
     apt-get update \
     \
     && apt-get install -y --no-install-recommends \
-        dirmngr=2.2.12-1+deb10u1 \
-        gpg-agent=2.2.12-1+deb10u1 \
-        gpg=2.2.12-1+deb10u1 \
+        dirmngr\
+        gpg-agent \
+        gpg \
         libnginx-mod-http-lua \
-        luarocks=2.4.2+dfsg-1 \
+        luarocks \
         nginx \
-        git=1:2.20.1-2+deb10u3 \
+        git \
     \
     && curl -L https://apt.mopidy.com/mopidy.gpg | apt-key add - \
     && curl -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list \
