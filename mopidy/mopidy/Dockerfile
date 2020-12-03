@@ -28,13 +28,14 @@ RUN \
     \
     && apt-get install -y --no-install-recommends \
         libffi-dev=3.2.1-9 \
-        libxml2-dev \
+ #       libxml2-dev \
         libxslt1-dev=1.1.32-2.2~deb10u1 \
         libasound2-dev=1.1.8-1 \
         libspotify12 \
         libspotify-dev \
         zlib1g-dev=1:1.2.11.dfsg-1 \
-        build-essential=12.6 \
+        # build-essential=12.6
+        build-essential \
         python3-dev=3.7.3-1 \
         python3-gi=3.30.4-1 \
         python3-gst-1.0=1.14.4-1+b1 \
@@ -60,8 +61,8 @@ RUN \
         gpg \
         git \
         libffi-dev \
-#       libxml2-dev \
-#        libxslt1-dev \
+       libxml2-dev \
+        libxslt1-dev \
         zlib1g-dev \
         build-essential \
         gcc \
