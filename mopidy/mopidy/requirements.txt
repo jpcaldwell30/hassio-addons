@@ -5,6 +5,5 @@ Mopidy-AlsaMixer
 Mopidy-Spotify
 Mopidy-Iris
 Mopidy-SoundCloud
-Mopidy-GMusic
 Mopidy-Youtube
 Mopidy-MPD
