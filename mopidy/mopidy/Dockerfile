@@ -15,11 +15,68 @@ RUN \
     && apt-get install -y --no-install-recommends \
         dirmngr \
         gpg-agent \
-        gpg \    
+        gpg \
+        libnginx-mod-http-lua \
+        luarocks \
+        nginx \
+        git\
+    \
     && curl -L https://apt.mopidy.com/mopidy.gpg | apt-key add - \
     && curl -L https://apt.mopidy.com/mopidy.list -o /etc/apt/sources.list.d/mopidy.list \
     \
-    && apt-get update
+    && apt-get update \
+    \
+    && apt-get install -y --no-install-recommends \
+        libffi-dev \
+        libxml2-dev \
+        libxslt1-dev \
+        libasound2-dev \
+        libspotify12\
+        libspotify-dev \
+        zlib1g-dev \
+        build-essential \
+        python3-dev \
+        python3-gi \
+        python3-gst-1.0 \
+        gstreamer1.0-alsa \
+        gstreamer1.0-plugins-bad \
+        gstreamer1.0-plugins-good \
+        gstreamer1.0-plugins-ugly \
+        gstreamer1.0-pulseaudio \
+    \
+    && luarocks install lua-resty-http 0.15-0 \
+    \
+    && curl https://bootstrap.pypa.io/get-pip.py | python3 \
+    && pip3 install --no-cache-dir -r /tmp/requirements.txt \
+    \
+    && find /usr/local/lib/python3.7/ -type d -name tests -depth -exec rm -rf {} \; \
+    && find /usr/local/lib/python3.7/ -type d -name test -depth -exec rm -rf {} \; \
+    && find /usr/local/lib/python3.7/ -name __pycache__ -depth -exec rm -rf {} \; \
+    && find /usr/local/lib/python3.7/ -name "*.pyc" -depth -exec rm -f {} \; \
+    \
+    && apt-get purge -y --auto-remove \
+        dirmngr \
+        gpg-agent \
+        gpg \
+        git \
+        libffi-dev \
+        libxml2-dev \
+        libxslt1-dev \
+        zlib1g-dev \
+        build-essential \
+        gcc \
+        python-dev \
+        dpkg-dev \
+        gcc-7 \
+        luarocks \
+    && rm -fr \
+        /var/{cache,log}/* \
+        /var/lib/apt/lists/* \
+        /root/.cache \
+    && find /tmp/ -mindepth 1  -delete
+
+# Move access.log to stdout and error.log to stderr
+RUN mkdir -p /var/log/nginx && ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 
 # Copy root filesystem
 COPY rootfs /
