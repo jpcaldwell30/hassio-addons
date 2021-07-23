@@ -5,8 +5,6 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
---network host
-
 # Copy Python requirements file
 COPY requirements.txt /tmp/
 
