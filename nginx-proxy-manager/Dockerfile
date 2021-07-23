@@ -5,13 +5,16 @@ FROM ${BUILD_FROM}
 # Set shell
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+--network host
+
 # Copy Python requirements file
 COPY requirements.txt /tmp/
 
 # Setup base
 # hadolint ignore=DL3003
 RUN \
-    echo -e "http://nl.alpinelinux.org/alpine/v3.5/main\nhttp://nl.alpinelinux.org/alpine/v3.5/community" > /etc/apk/repositories \
+    --network host \
+    && echo -e "http://nl.alpinelinux.org/alpine/v3.5/main\nhttp://nl.alpinelinux.org/alpine/v3.5/community" > /etc/apk/repositories \
     && apk add --no-cache --virtual .build-dependencies \
         build-base=0.5-r2 \
         git=2.30.2-r0 \
