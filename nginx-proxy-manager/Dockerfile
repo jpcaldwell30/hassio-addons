@@ -13,7 +13,7 @@ COPY requirements.txt /tmp/
 # Setup base
 # hadolint ignore=DL3003
 RUN \
-    --network host \
+    --network="host" \
     && echo -e "http://nl.alpinelinux.org/alpine/v3.5/main\nhttp://nl.alpinelinux.org/alpine/v3.5/community" > /etc/apk/repositories \
     && apk add --no-cache --virtual .build-dependencies \
         build-base=0.5-r2 \
