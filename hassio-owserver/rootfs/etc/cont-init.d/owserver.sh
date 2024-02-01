@@ -10,6 +10,12 @@ temperature_scale=$(bashio::config 'temperature_scale')
 if  bashio::var.equals "${device_type}" "fake"; then
     bashio::log.info "Configuring fake device"
     sed -i "s/%%device%%/FAKE = DS18B20,DS2405/g" /etc/owfs.conf
+elif bashio::var.equals "${device_type}" "w1"; then
+    bashio::log.info "Configuring w1 device"
+    sed -i "s/%%device%%/w1/g" /etc/owfs.conf
+elif bashio::var.equals "${device_type}" "sys"; then
+    bashio::log.info "Configuring sys device"
+    sed -i "s/%%device%%/device = \/sys\/bus\/w1\/devices\/28-00000a29ca4f/g" /etc/owfs.conf
 elif bashio::var.equals "${device_type}" "usb"; then
     bashio::log.info "Configuring usb device"
     sed -i "s/%%device%%/usb = all/g" /etc/owfs.conf
