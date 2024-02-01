@@ -1,16 +1,17 @@
-name: JH owserver (1-wire)
+---
+name: owserver (1-wire)
 version: 0.3.0
 slug: owserver
 description: onewire server to read 1-Wire devices
 url: https://github.com/lrybak/hassio-owserver
 startup: system
 init: false
-arch:
+arch: 
   - amd64
   - aarch64
   - armhf
   - armv7
-boot: auto
+boot: auto  
 uart: true
 options:
   owhttpd: true
@@ -18,10 +19,10 @@ options:
 schema:
   owhttpd: bool
   device: device
-  device_type: list(serial_or_i2c|usb|ha7net|w1|fake)
+  device_type: list(serial_or_i2c|usb|ha7net|fake)
   temperature_scale: list(Celsius|Fahrenheit|Kelvin|Rankine)
   ha7net_server: str?
   debug: bool?
 ingress: true
 panel_icon: mdi:alpha-w-box
-image: ghcr.io/jethome-hassio-addons/owserver/{arch}
+image: ghcr.io/lrybak/owserver/{arch}
